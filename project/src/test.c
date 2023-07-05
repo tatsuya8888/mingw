@@ -1,11 +1,10 @@
+#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "test.h"
 
-int main(int argc, char *argv[])
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst,LPSTR lpszCmdLine, int nCmdShow)
 {
-	int i;
-	for (i = 0; i < argc; i++){
-	   printf("argv[%d] = %s\n", i, argv[i]);
-	}
+    MessageBox(NULL, "Hello world.", "message", MB_OK);
+	return 0;
 }
