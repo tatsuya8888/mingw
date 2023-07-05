@@ -11,10 +11,10 @@ EXE=a.exe
 # --------------- path ----------------
 EXEPATH=./
 
-SRCPATH=./
+SRCPATH=./src/
 
-OBJPATH=./
-OBJPATHE=.\\
+OBJPATH=./obj/
+OBJPATHE=.\obj\\
 
 DATAPATH=GUI_src
 
