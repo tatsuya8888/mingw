@@ -8,6 +8,5 @@ set GCC_EXEC_PREFIX = %BASE%lib\gcc-lib\
 set GDKLIB= -fnative-struct -mwindows -lgtk-1.3 -lgdk-1.3 
 set GCC_OPT_SJIS=-finput-charset=cp932 -fexec-charset=cp932
 
-cd C:\gcc_pjt
-explorer "C:\gcc_pjt"
+cd C:\gcc_pjt\mingw\project
 cmd
