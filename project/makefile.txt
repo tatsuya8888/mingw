@@ -1,0 +1,57 @@
+# ------------ ソース ----------------
+SRC= \
+test.c \
+
+
+# ------------ EXE設定 ---------------
+
+EXE=a.exe
+
+
+# --------------- path ----------------
+EXEPATH=./
+
+SRCPATH=./src/
+
+OBJPATH=./obj/
+OBJPATHE=.\obj\\
+
+DATAPATH=GUI_src
+
+
+# --------------- 置換 ----------------
+
+SRCs=$(patsubst %.c,$(OBJPATH)%.c,$(SRC)) # ソースの .c を OBJPATH付.o へと置き換え
+OBJ=$(SRC:%.c=%.o)                        # ソースの .c を .o へと置き換え
+OBJs=$(patsubst %.c,$(OBJPATH)%.o,$(SRC)) # ソースの .c を OBJPATH付.o へと置き換え
+OBJe=$(patsubst %.c,$(OBJPATHE)%.o,$(SRC)) # ソースの .c を OBJPATH付.o へと置き換え
+
+# ---------- コンパイラ設定 -----------
+
+CC=gcc
+CFLAGS= -Wall -O3 -D_TYPE_S32_INT -I$(DATAPATH)
+#CFLAGS= -O3
+#LDFLAGS= -mwindows -lwinmm
+#RM=rm
+RM=del
+
+# --------------- 処理 ----------------
+
+
+#%.o: $(SRCPATH)%.c               # 次の行と結合されており、最近変更された .c ファイルをコンパイルします。
+%.o: $(SRCPATH)%.c
+	$(CC) $(CFLAGS) -o $(OBJPATH)$@ -c ./$<
+
+.PHONY : all     # .PHONY は all という名前のファイルを無視します。
+all: $(EXE)      # all は $(EXE) を完全に生成することに依存しています。
+
+$(EXE): $(OBJ)
+	$(CC) $(OBJs) $(LDFLAGS) -o $(EXEPATH)$@
+#	$(CC) $(OBJ) -o $@
+
+.PHONY : clean   # .PHONY は clean という名前のファイルを無視します。
+clean:
+	-$(RM) $(OBJe)
+#	-$(RM) $(OBJs)
+# core	# '-' はエラーが発生しても、プロセスを終了させません
+
