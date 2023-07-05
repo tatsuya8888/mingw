@@ -1,1 +1,2 @@
-gcc test.c %GCC_OPT_SJIS%
+@echo ---------------------------------------------------------------
+mingw32-make --makefile=makefile.txt %1
