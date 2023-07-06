@@ -41,6 +41,20 @@ static int comm_ComOpen(HANDLE *pHndl)
 	dcb.StopBits		 = ONESTOPBIT;
 	SetCommState(hndlComm, &dcb);
 
+	COMMTIMEOUTS timeout;									/* COMMTIMEOUTS構造体の変数を宣言				*/
+	timeout.ReadIntervalTimeout			= MAXDWORD;			/* 文字読込時の２も時間の全体待ち時間（msec）	*/
+	timeout.ReadTotalTimeoutMultiplier	= 0;				/* 読込の１文字あたりの時間(for Win9x)			*/
+	timeout.ReadTotalTimeoutConstant	= 0;				/* 読込エラー検出用のタイムアウト時間			*/
+	timeout.WriteTotalTimeoutMultiplier = 0;				/* 書き込み１文字あたりの待ち時間(for Win9x)	*/
+	timeout.WriteTotalTimeoutConstant	= 1000;         	/* 書き込みエラー検出用のタイムアウト時間		*/
+
+/*	timeout.ReadIntervalTimeout			= 100;	*/	/* 文字読込時の２も時間の全体待ち時間（msec）	*/
+/*	timeout.ReadTotalTimeoutMultiplier	= 5;	*/	/* 読込の１文字あたりの時間(for Win9x)			*/
+/*	timeout.ReadTotalTimeoutConstant	= 5;	*/	/* 読込エラー検出用のタイムアウト時間			*/
+/*	timeout.WriteTotalTimeoutMultiplier = 10;	*/	/* 書き込み１文字あたりの待ち時間(for Win9x)	*/
+/*	timeout.WriteTotalTimeoutConstant	= 100;	*/	/* 書き込みエラー検出用のタイムアウト時間		*/
+	SetCommTimeouts(hndlComm, &timeout);
+
 	*pHndl = hndlComm;
 
 	return (0);
