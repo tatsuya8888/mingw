@@ -26,23 +26,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst,LPSTR lpszCmdLine, in
     Sleep(10);
     printf("esc write\n");
 
-    char rdData[4096] = {0};
-    int rdLen = 0;
     int flg = 0;
     while(0==flg){
         char rdC;
         DWORD drSize = 0;
         BOOL res = ReadFile(handleComm,&rdC,1,&drSize,NULL);
         if( (TRUE == res)&&(1 == drSize) ){
-            rdData[rdLen] = rdC;
-            rdLen++;
+            putchar(rdC);
         }else{
             flg = 1;
         }
     }
 
-    printf("read\n");
-    printf(rdData);
+    printf("\nread\n");
 
 	return 0;   /* 正常終了 */
 }
